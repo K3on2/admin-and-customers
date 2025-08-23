@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Information - Al Ayadi Al Sarea Cleaning Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="assistance1.css">
+
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="logo.png" alt="logo" class="logo-img">
+    <div class="logo-text-group">
+      <span class="logo-text">Al Ayadi <span class="highlight">Al</span> <span class="high">Sarea</span></span>
+      <span class="logo-subtext">Cleaning Services</span>
+    </div>
+  </div>
+  <div class="nav-right">
+    <ul class="navlist">
+      <li><a href="#" onclick="home()">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="bx bx-search"></i>
+    </div>
+  </div>
+</header>
+
+<section class="booking-section">
+  <div class="booking-card">
+        <ul class="booking-details">
+            <li><i class="bx bx-user"></i> Customer Details</li>
+            <li><i class="bx bx-calendar"></i> Date & Time</li>
+            <li><i class="bx bx-brush"></i> Type of Cleaning</li>
+            <li><i class="bx bx-group"></i> Preferred Cleaning Agents</li>
+            <li><i class="bx bx-edit-alt"></i> Special Requests</li>
+            <li><i class="bx bx-receipt"></i> Billing Summary</li>
+            <li><i class="bx bx-check-circle"></i> Booking Confirmation</li>
+        </ul>
+
+    <div class="booking-form">
+      <h2>Booking Information</h2>
+
+      <!-- Other Services -->
+      <h3>Other Home Assistance Services:</h3>
+      <div class="service-options">
+        <div class="service-card">
+          <img src="sparkle.png" alt="Ironing">
+          <h4>Normal Cleaning</h4>
+          <p>Regular cleaning covering dusting, sweeping, mopping, wiping surfaces, and tidying up to maintain day-to-day cleanliness and hygiene.</p>
+        </div>
+        <div class="service-card">
+          <img src="cleaning.png" alt="Dusting">
+          <h4>Deep Cleaning</h4>
+          <p>Intensive cleaning that includes scrubbbing tiles, sanatizing kitchens and bathrooms, cleaning behind furnitures, and removing deep seated dirt and stains. Perfect for move-ins, move-outs, or a complete home refresh.</p>
+        </div>
+        <div class="service-card back-card"  onclick="assist()">
+          <img src="back.png" alt="back">
+          <p style="color:white;">OTHER HOME ASSISTANCE - SERVICES</p>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-back" href = "#" onclick = "cal()">Back</button>
+        <button class="btn btn-next" href = "#" onclick = "agent()">Next</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>&copy; 2025 Al Ayadi Al Sarea Cleaning Services. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const cards = document.querySelectorAll('.service-card:not(.back-card)');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // Restore selection if user comes back
+  const savedCleaning = localStorage.getItem('cleaningType');
+  if (savedCleaning) {
+    cards.forEach(card => {
+      if (card.querySelector('h4').innerText === savedCleaning) {
+        card.classList.add('selected');
+        nextBtn.disabled = false;
+      }
+    });
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      // remove 'selected' from all
+      cards.forEach(c => c.classList.remove('selected'));
+      // add 'selected' to clicked one
+      card.classList.add('selected');
+      // save choice
+      localStorage.setItem('cleaningType', card.querySelector('h4').innerText);
+      // enable Next
+      nextBtn.disabled = false;
+    });
+  });
+</script>
+
+<script src="home.js"></script>
+<script src="cal.js"></script>
+<script src="assist.js"></script>
+<script src="agent.js"></script>
+</body>
+</html>

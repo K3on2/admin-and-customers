@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Information - Al Ayadi Al Sarea Cleaning Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="request.css">
+    
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="logo-container">
+        <img src="logo.png" alt="logo" class="logo-img">
+        <div class="logo-text-group">
+            <span class="logo-text">
+                Al Ayadi <span class="highlight">Al</span> <span class="high">Sarea</span>
+            </span>
+            <span class="logo-subtext">Cleaning Services</span>
+        </div>
+    </div>
+
+    <div class="nav-right">
+        <ul class="navlist">
+            <li><a href="#" class="" onclick =" home()">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <i class="bx bx-search"></i>
+        </div>
+    </div>
+</header>
+
+<!-- Booking Section -->
+<section class="booking-section">
+  <div class="booking-card">
+    <!-- Sidebar -->
+    <ul class="booking-details">
+      <li><i class="bx bx-user"></i> Customer Details</li>
+      <li><i class="bx bx-calendar"></i> Date & Time</li>
+      <li><i class="bx bx-brush"></i> Type of Cleaning</li>
+      <li><i class="bx bx-group"></i> Preferred Cleaning Agents</li>
+      <li><i class="bx bx-edit-alt"></i> Special Requests</li>
+      <li><i class="bx bx-receipt"></i> Billing Summary</li>
+      <li><i class="bx bx-check-circle"></i> Booking Confirmation</li>
+    </ul>
+
+    <!-- Right Form -->
+    <div class="booking-form">
+      <h2>Booking Information</h2>
+      <p>Please write down any notes for the cleaners to see:</p>
+
+      <textarea id="address" required></textarea>
+
+      <div class="btn-row">
+        <button class="btn btn-back" href = "#" onclick = "agent()">Back</button>
+        <button class="btn btn-next" id="nextBtn" disabled>Next</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2025 Al Ayadi Al Sarea Cleaning Services. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const textarea = document.getElementById("address");
+  const nextBtn = document.getElementById("nextBtn");
+
+  // Load saved data when page loads
+  window.addEventListener("DOMContentLoaded", () => {
+    const savedNote = localStorage.getItem("specialRequest");
+    if (savedNote) {
+      textarea.value = savedNote;
+      if (savedNote.trim() !== "") {
+        nextBtn.disabled = false; // Enable button if there was already saved text
+      }
+    }
+  });
+
+  // Save to localStorage on input and enable Next button
+  textarea.addEventListener("input", () => {
+    localStorage.setItem("specialRequest", textarea.value);
+    nextBtn.disabled = textarea.value.trim() === ""; // Enable only if not empty
+  });
+
+  // Optional: also save when clicking "Next"
+  nextBtn.addEventListener("click", () => {
+    localStorage.setItem("specialRequest", textarea.value);
+	window.location.href = "summary.html";
+    // Redirect or go to next step
+  });
+</script>
+
+<script src="home.js"></script>
+<script src="agent.js"></script>
+<!-- Firebase SDK -->
+
+</body>
+</html>

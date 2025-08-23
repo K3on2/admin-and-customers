@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Information - Al Ayadi Al Sarea Cleaning Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="calendar.css">
+
+        
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="logo.png" alt="logo" class="logo-img">
+        <div class="logo-text-group">
+            <span class="logo-text">Al Ayadi <span class="highlight">Al</span> <span class="high">Sarea</span></span>
+            <span class="logo-subtext">Cleaning Services</span>
+        </div>
+    </div>
+    <div class="nav-right">
+        <ul class="navlist">
+            <li><a href="#" onclick="home()">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <i class="bx bx-search"></i>
+        </div>
+    </div>
+</header>
+
+<section class="booking-section">
+    <div class="booking-card">
+        <ul class="booking-details">
+            <li><i class="bx bx-user"></i> Customer Details</li>
+            <li><i class="bx bx-calendar"></i> Date & Time</li>
+            <li><i class="bx bx-brush"></i> Type of Cleaning</li>
+            <li><i class="bx bx-group"></i> Preferred Cleaning Agents</li>
+            <li><i class="bx bx-edit-alt"></i> Special Requests</li>
+            <li><i class="bx bx-receipt"></i> Billing Summary</li>
+            <li><i class="bx bx-check-circle"></i> Booking Confirmation</li>
+        </ul>
+
+        <div class="booking-form">
+            <h2>Booking Information</h2>
+
+            <div class="form-columns">
+                <!-- Calendar Column -->
+                <div class="calendar-column">
+                    <div class="calendar-header">
+                        <button id="prevMonth">&lt;</button>
+                        <span id="monthYear"></span>
+                        <button id="nextMonth">&gt;</button>
+                    </div>
+                    <table id="bookingCalendar">
+                        <thead>
+                            <tr>
+                                <th>Sun</th><th>Mon</th><th>Tue</th>
+                                <th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="calendar-legend">
+                        <span class="legend available"></span> Available
+                        <span class="legend booked"></span> Fully Booked
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="details-column">
+                    <label>Time:</label>
+                    <div class="time-buttons">
+                        <button type="button" class="time-btn" data-time="Morning">🌤 Morning</button>
+                        <button type="button" class="time-btn" data-time="Afternoon">🌇 Afternoon</button>
+                        <button type="button" class="time-btn" data-time="Night">🌙 Night Time</button>
+                    </div>
+
+                    <label>Hours:</label>
+                    <input type="number" id="hoursInput" min="2" value="2">
+                    <small class="note green">Minimum of 2 hours</small>
+
+                    <label>Number of Cleaners:</label>
+                    <input type="number" id="cleanersInput" min="1" value="1">
+                    <small class="note red">25 AED per cleaner</small>
+
+                    <input type="hidden" id="selectedDate">
+                    <input type="hidden" id="selectedTime">
+
+                    <div class="btn-row">
+                        <button class="btn btn-back" type="button" onclick="back()">Back</button>
+                        <button class="btn btn-next" id="nextBtn" disabled>Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <p>&copy; 2025 Al Ayadi Al Sarea Cleaning Services. All Rights Reserved.</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const prevMonthBtn = document.getElementById("prevMonth");
+    const nextMonthBtn = document.getElementById("nextMonth");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const selectedDateInput = document.getElementById("selectedDate");
+    const selectedTimeInput = document.getElementById("selectedTime");
+    const hoursInput = document.getElementById("hoursInput");
+    const cleanersInput = document.getElementById("cleanersInput");
+
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+
+    // Load existing bookingForm or empty object
+    const loadBookingForm = () => JSON.parse(localStorage.getItem("bookingForm") || "{}");
+
+    function saveCalendarInfo() {
+        const existing = loadBookingForm();
+        const updated = {
+            ...existing, // preserve personal info
+            booking: {
+                detailsDate: selectedDateInput.value,
+                time: selectedTimeInput.value,
+                hours: hoursInput.value,
+                cleaners: cleanersInput.value,
+                status: "pending",
+                confirmed: true
+            }
+        };
+        localStorage.setItem("bookingForm", JSON.stringify(updated));
+    }
+
+    function renderCalendar(month, year) {
+        const savedBooking = loadBookingForm().booking || {};
+        const monthYear = document.getElementById("monthYear");
+        const tbody = document.querySelector("#bookingCalendar tbody");
+        tbody.innerHTML = "";
+
+        const firstDay = new Date(year, month).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        monthYear.textContent = `${monthNames[month]} ${year}`;
+
+        let date = 1;
+        for (let i = 0; i < 6; i++) {
+            const row = document.createElement("tr");
+            for (let j = 0; j < 7; j++) {
+                const cell = document.createElement("td");
+                if (i === 0 && j < firstDay || date > daysInMonth) {
+                    cell.textContent = "";
+                } else {
+                    const dateStr = `${year}-${String(month+1).padStart(2,"0")}-${String(date).padStart(2,"0")}`;
+                    cell.innerHTML = `<div>${date}</div>`;
+
+                    // Restore saved date
+                    if (savedBooking.detailsDate === dateStr) {
+                        cell.classList.add("saved-date");
+                    } else {
+                        cell.classList.add("available");
+                    }
+
+                    // Restore currently selected date
+                    if (selectedDateInput.value === dateStr) {
+                        cell.classList.add("selected");
+                    }
+
+                    cell.dataset.date = dateStr;
+                    cell.addEventListener("click", () => {
+                        document.querySelectorAll("#bookingCalendar td").forEach(td => td.classList.remove("selected"));
+                        cell.classList.add("selected");
+
+                        if (selectedDateInput.value !== dateStr) {
+                            selectedDateInput.value = dateStr;
+                            selectedTimeInput.value = "";
+                            document.querySelectorAll(".time-btn").forEach(b => b.classList.remove("active"));
+                            hoursInput.value = 2;
+                            cleanersInput.value = 1;
+                        }
+
+                        updateNextButtonState();
+                    });
+                    date++;
+                }
+                row.appendChild(cell);
+            }
+            tbody.appendChild(row);
+        }
+    }
+
+    function updateNextButtonState() {
+        if (selectedDateInput.value && selectedTimeInput.value && hoursInput.value && cleanersInput.value) {
+            nextBtn.disabled = false;
+        } else {
+            nextBtn.disabled = true;
+        }
+    }
+
+    // Restore saved booking data
+    const savedBooking = loadBookingForm().booking || {};
+    if (savedBooking.detailsDate) selectedDateInput.value = savedBooking.detailsDate;
+    if (savedBooking.time) {
+        selectedTimeInput.value = savedBooking.time;
+        const btn = document.querySelector(`.time-btn[data-time="${savedBooking.time}"]`);
+        if (btn) btn.classList.add("active");
+    }
+    if (savedBooking.hours) hoursInput.value = savedBooking.hours;
+    if (savedBooking.cleaners) cleanersInput.value = savedBooking.cleaners;
+
+    // Time buttons
+    document.querySelectorAll(".time-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".time-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            selectedTimeInput.value = btn.dataset.time;
+            saveCalendarInfo();
+            updateNextButtonState();
+        });
+    });
+
+    [hoursInput, cleanersInput].forEach(input => {
+        input.addEventListener("input", () => {
+            saveCalendarInfo();
+            updateNextButtonState();
+        });
+    });
+
+    // Month navigation
+    prevMonthBtn.addEventListener("click", () => {
+        currentMonth--;
+        if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+        renderCalendar(currentMonth, currentYear);
+    });
+    nextMonthBtn.addEventListener("click", () => {
+        currentMonth++;
+        if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+        renderCalendar(currentMonth, currentYear);
+    });
+
+    // Next button click
+    nextBtn.addEventListener("click", () => {
+        saveCalendarInfo();
+        renderCalendar(currentMonth, currentYear);
+        window.location.href = "assistance1.html";
+    });
+
+    renderCalendar(currentMonth, currentYear);
+    updateNextButtonState();
+});
+</script>
+<script src = "back.js"></script>
+<script src = "assist1.js"></script>
+
+</body>
+</html>

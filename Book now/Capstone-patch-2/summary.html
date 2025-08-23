@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Information - Al Ayadi Al Sarea Cleaning Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="summary.css">
+    
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="logo.png" alt="logo" class="logo-img">
+        <div class="logo-text-group">
+            <span class="logo-text">Al Ayadi <span class="highlight">Al</span> <span class="high">Sarea</span></span>
+            <span class="logo-subtext">Cleaning Services</span>
+        </div>
+    </div>
+    <div class="nav-right">
+        <ul class="navlist">
+            <li><a href="#" onclick="home()">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <i class="bx bx-search"></i>
+        </div>
+    </div>
+</header>
+
+<section class="booking-section">
+    <div class="booking-card">
+        <ul class="booking-details">
+            <li><i class="bx bx-user"></i> Customer Details</li>
+            <li><i class="bx bx-calendar"></i> Date & Time</li>
+            <li><i class="bx bx-brush"></i> Type of Cleaning</li>
+            <li><i class="bx bx-group"></i> Preferred Cleaning Agents</li>
+            <li><i class="bx bx-edit-alt"></i> Special Requests</li>
+            <li><i class="bx bx-receipt"></i> Billing Summary</li>
+            <li><i class="bx bx-check-circle"></i> Booking Confirmation</li>
+        </ul>
+
+        <div class="booking-form">
+    <h2>Summary Information</h2>
+
+    <div class="form-columns">
+        <!-- Customer Details -->
+        <div class="details-column">
+            <p><strong>Full Name:</strong> <span id="name"></span></p>
+            <p><strong>Contact Number:</strong> <span id="contact"></span></p>
+            <p><strong>Emirates:</strong> <span id="emirates"></span></p>
+            <p><strong>House Number:</strong> <span id="houseNumber"></span></p>
+            <p><strong>Address:</strong> <span id="address"></span></p>
+        </div>
+
+        <!-- Booking Details -->
+        <div class="details-column">
+            <p><strong>Booking Date:</strong> <span id="detailsDate"></span></p>
+            <p><strong>Time Slot:</strong> <span id="time"></span></p>
+            <p><strong>Number of Hours:</strong> <span id="hours"></span></p>
+            <p><strong>Cleaners Required:</strong> <span id="cleaners"></span></p>
+            <p><strong>Status:</strong> <span id="status"></span></p>
+            <p><strong>Confirmed:</strong> <span id="confirmed"></span></p>
+        </div>
+    </div>
+
+    <div class="btn-row">
+        <button class="btn btn-back" type="button" onclick="reques()">Back</button>
+        <button class="btn btn-next" id="nextBtn">Next</button>
+    </div>
+</div>
+</div>
+
+</section>
+
+<footer class="footer">
+    <p>&copy; 2025 Al Ayadi Al Sarea Cleaning Services. All Rights Reserved.</p>
+</footer>
+
+
+<script>
+const bookingData = JSON.parse(localStorage.getItem('bookingForm')); // Use your actual key
+
+if (bookingData) {
+    // Customer Details
+    document.getElementById('name').textContent = bookingData.name || '';
+    document.getElementById('contact').textContent = bookingData.contact || '';
+    document.getElementById('emirates').textContent = bookingData.emirates || '';
+    document.getElementById('houseNumber').textContent = bookingData.houseNumber || '';
+    document.getElementById('address').textContent = bookingData.address || '';
+
+    // Booking Details
+    document.getElementById('detailsDate').textContent = bookingData.booking?.detailsDate || '';
+    document.getElementById('time').textContent = bookingData.booking?.time || '';
+    document.getElementById('hours').textContent = bookingData.booking?.hours || '';
+    document.getElementById('cleaners').textContent = bookingData.booking?.cleaners || '';
+    document.getElementById('status').textContent = bookingData.booking?.status || '';
+    document.getElementById('confirmed').textContent = bookingData.booking?.confirmed ? "Yes" : "No";
+} else {
+    console.warn('No booking data found in localStorage.');
+}
+</script>
+
+<script src = "back.js"></script>
+<script src = "reques.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Information - Al Ayadi Al Sarea Cleaning Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="assistance.css">
+
+  
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <img src="logo.png" alt="logo" class="logo-img">
+    <div class="logo-text-group">
+      <span class="logo-text">Al Ayadi <span class="highlight">Al</span> <span class="high">Sarea</span></span>
+      <span class="logo-subtext">Cleaning Services</span>
+    </div>
+  </div>
+  <div class="nav-right">
+    <ul class="navlist">
+      <li><a href="#" onclick="home()">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <i class="bx bx-search"></i>
+    </div>
+  </div>
+</header>
+
+<section class="booking-section">
+  <div class="booking-card">
+    <ul class="booking-details">
+      <li><i class="bx bx-user"></i> Customer Details</li>
+      <li><i class="bx bx-brush"></i> Other Services</li>
+      <li><i class="bx bx-edit-alt"></i> Special Requests</li>
+      <li><i class="bx bx-receipt"></i> Billing Summary</li>
+      <li><i class="bx bx-check-circle"></i> Booking Confirmation</li>
+    </ul>
+
+    <div class="booking-form">
+      <h2>Booking Information</h2>
+
+      <!-- Other Services -->
+      <h3>Other Home Assistance Services:</h3>
+      <div class="service-options">
+        <div class="service-card">
+          <img src="iron.png" alt="Ironing">
+          <h4>Ironing</h4>
+          <p>Ironing - AED 30 per hour</p>
+        </div>
+        <div class="service-card">
+          <img src="dusting.png" alt="Dusting">
+          <h4>Dusting and Polishing</h4>
+          <p>Package Price varies depending on the number of windows.</p>
+        </div>
+        <div class="service-card back-card" onclick="assist1()">
+          <img src="back.png" alt="Back">
+           <p style="color:white;">Back</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>&copy; 2025 Al Ayadi Al Sarea Cleaning Services. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const cards2 = document.querySelectorAll('.service-card:not(.back-card)');
+
+  // Restore selections if user comes back
+  const savedServices = JSON.parse(localStorage.getItem('otherServices')) || [];
+  cards2.forEach(card => {
+    if (savedServices.includes(card.querySelector('h4').innerText)) {
+      card.classList.add('selected');
+    }
+  });
+
+  cards2.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('selected');
+
+      let selected = Array.from(document.querySelectorAll('.service-card.selected:not(.back-card)'))
+        .map(c => c.querySelector('h4').innerText);
+
+      // save to localStorage
+      localStorage.setItem('otherServices', JSON.stringify(selected));
+    });
+  });
+</script>
+
+<script src="home.js"></script>
+<script src="cal.js"></script>
+<script src="assist1.js"></script>
+</body>
+</html>
