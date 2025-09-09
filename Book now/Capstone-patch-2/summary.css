@@ -188,6 +188,7 @@ header.scrolled .navlist a:hover {
   flex-wrap: wrap;
   gap: 30px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: -30px;
 }
 
 .booking-card:hover {
@@ -436,33 +437,50 @@ header.scrolled .navlist a:hover {
 .note.red { color: red; font-size: 13px; font-weight: 500; }
 
 /* Buttons */
-.btn-row { 
-  margin-top: 20px; 
-  display: flex; 
-  justify-content: flex-end; 
-  gap: 12px; 
-}
-.btn { 
-  padding: 10px 22px; 
-  border: none; 
-  cursor: pointer; 
-  font-weight: 600; 
-  border-radius: 12px; 
-  transition: all 0.3s ease;
-}
-.btn-back { 
-  background: #242478; 
-  color: white; 
+.btn-row {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px; /* slightly more space between buttons */
 }
 
-.btn-next { 
-  background: #3535B0; 
-  color: #fff; 
+.btn {
+    padding: 8px 22px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 14px; /* modern, compact size */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* subtle shadow */
 }
 
-.btn-next:disabled { 
-  opacity: 0.5; 
-  cursor: not-allowed; 
+.btn-back {
+    background: #3949AB; /* modern blue */
+    color: #fff;
+}
+
+.btn-back:hover {
+    background: #303F9F;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn-next {
+    background: #1A237E; /* darker modern blue */
+    color: #fff;
+}
+
+.btn-next:hover:not(:disabled) {
+    background: #121858;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn-next:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #9FA8DA; /* lighter, disabled style */
 }
 
 .details-column p {

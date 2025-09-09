@@ -126,10 +126,7 @@ header.scrolled {
   color: #FFD94C;
 }
 
-.navlist a.active {
-  background-color: #FFD94C;
-  color: #002366;
-}
+
 
 header.scrolled .navlist a {
   color: #002366;
@@ -284,42 +281,49 @@ header.scrolled .navlist a:hover {
 
 /* Buttons */
 .btn-row {
-  margin-top: 25px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 15px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px; /* slightly more space between buttons */
 }
 
 .btn {
-  padding: 10px 25px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 25px;
-  transition: all 0.3s ease;
+    padding: 8px 22px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 14px; /* modern, compact size */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* subtle shadow */
 }
 
 .btn-back {
-  background: #242478;
-  color: white;
+    background: #3949AB; /* modern blue */
+    color: #fff;
 }
 
 .btn-back:hover {
-  background: #1a1a6f;
+    background: #303F9F;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .btn-next {
-  background: #3535B0;
-  color: #fff;
+    background: #1A237E; /* darker modern blue */
+    color: #fff;
 }
 
-.btn-next:hover {
-  background: #4f4fd1;
+.btn-next:hover:not(:disabled) {
+    background: #121858;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .btn-next:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #9FA8DA; /* lighter, disabled style */
 }
 
 /* ==============================

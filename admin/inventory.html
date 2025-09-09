@@ -13,58 +13,74 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-    <!-- Topbar -->
-    <div class="topbar d-flex justify-content-between align-items-center px-3 py-2 mb-0">
-      <div class="d-flex align-items-center gap-2 fw-bold">
-        <button id="toggleSidebar" class="hamburger"><span></span><span></span><span></span></button>
-        <div class="logo-container">
-          <img src="logo.png" alt="logo" class="logo-img">
-          <div class="logo-text-group">
-            <span class="logo-text">Al Ayadi <span class="highlight">Al</span> <span class="high">Sarea</span></span>
-            <span class="logo-subtext">Cleaning Services</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="d-flex align-items-center">
-        <div class="search-box">
-          <input type="text" class="form-control" placeholder="Search...">
-          <i class="bi bi-search"></i>
-        </div>
-      </div>
-
-      <div class="d-flex align-items-center gap-3 me-3">
-        <a href="#" class="text-white fs-5"><i class="bi bi-bell-fill"></i></a>
-        <a href="#" class="text-white fs-5"><i class="bi bi-chat-left-dots-fill"></i></a>
-        <a href="#" class="text-white fs-5"><i class="bi bi-calendar-event-fill"></i></a>
-      </div>
-
-      <div class="dropdown">
-        <a class="text-white fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-          Admin 12345
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#" onclick="logout()">Log Out</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Sidebar -->
-    <div class="layout">
+  <div class="layout">
       <nav id="sidebar" class="sidebar">
-        <div class="text-center mb-4 logo-box">
-          <h5 class="brand-name">Alayadi <span>Alsarea</span></h5>
-          <p class="tagline">Technical Services</p>
-        </div>
+  <div class="text-center mb-4 logo-box">
+  <h5 class="brand-name">Alayadi <span>Alsarea</span></h5>
+  <p class="tagline">Technical Services</p>
+</div>
         <a class="nav-link" href="#" onclick="home()"><i class="bi bi-house-door-fill"></i> Dashboard</a>
         <a class="nav-link" href="#" onclick="book()"><i class="bi bi-calendar-check-fill"></i> Booking</a>
         <a class="nav-link" href="#" onclick="emp()"><i class="bi bi-people-fill"></i> Employees</a>
         <a class="nav-link" href="#" onclick="bill()"><i class="bi bi-receipt"></i> Billing</a>
         <a class="nav-link active"><i class="bi bi-box-seam"></i> Inventory</a>
         <a class="nav-link" href="#" onclick="rep()"><i class="bi bi-bar-chart-fill"></i> Reports & Analytics</a>
-      </nav>
+     </nav>
+
+    <!-- Content Area (Topbar + Main Content) -->
+    <div class="content-area">
+      
+      <!-- Topbar aligned to the right of sidebar -->
+      <div class="topbar d-flex justify-content-between align-items-center px-3">
+        <!-- Left Logo -->
+        <div class="d-flex align-items-center gap-2 fw-bold">
+          <div class="logo-container">
+            <img src="logo.png" alt="logo" class="logo-img">
+            <div class="logo-text-group">
+              <span class="logo-text">
+                Al Ayadi <span class="highlight">Al</span> <span class="high">Sarea</span>
+              </span>
+              <span class="logo-subtext">Cleaning Services</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search + Icons -->
+        <div class="d-flex align-items-center gap-3">
+          <div class="search-box">
+            <input type="text" class="form-control" placeholder="Search...">
+            
+          </div>
+          <a href="#"><i class="bi bi-bell-fill"></i></a>
+          <a href="#"><i class="bi bi-chat-left-dots-fill"></i></a>
+          <a href="#"><i class="bi bi-calendar-event-fill"></i></a>
+          
+          <!-- User Profile Dropdown -->
+<div class="dropdown user-dropdown">
+  <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+    <!-- Avatar -->
+    <div class="avatar rounded-circle bg-success d-flex align-items-center justify-content-center me-2">
+      <i class="bi bi-person text-white"></i>
+    </div>
+    <!-- Name -->
+    <span class="fw-semibold">Admin123</span>
+  </a>
+
+  <ul class="dropdown-menu dropdown-menu-end shadow">
+    <li>
+      <a class="dropdown-item d-flex align-items-center" href="#">
+        <i class="bi bi-gear me-2"></i> Settings
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" href="#">
+        <i class="bi bi-box-arrow-right me-2"></i> Logout
+      </a>
+    </li>
+  </ul>
+</div>
+        </div>
+      </div>
 
       <!-- Main Content -->
       <main class="main-content">
@@ -77,7 +93,6 @@
         <div class="d-flex justify-content-between align-items-center mb-3 px-3 flex-wrap gap-2">
           <div class="flex-grow-1 position-relative search-box">
             <input type="text" class="form-control" placeholder="Search materials...">
-            <i class="bi bi-search"></i>
           </div>
           <button class="btn btn-warning fw-semibold" data-bs-toggle="modal" data-bs-target="#addMaterialModal">
             <i class="bi bi-plus-lg"></i> Add Material

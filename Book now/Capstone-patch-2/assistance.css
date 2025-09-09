@@ -22,13 +22,13 @@ body {
 
 body::before {
   content: "";
-  position: absolute;
+  position: fixed;   /* stay fixed across the whole screen */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.508); /* transparent white overlay */         
-  z-index: -1; /* keep behind content */
+  height: 100%;      /* always full viewport */
+  background: rgba(255, 255, 255, 0.508);
+  z-index: -1;
 }
 
 /* HEADER */
@@ -172,9 +172,13 @@ header.scrolled .navlist a:hover {
 }
 
 .booking-section {
-    flex: 1; padding-top: 170px;
-    display: flex; justify-content: center; align-items: flex-start;
- }
+  flex: 1;
+  padding-top: 120px; /* smaller than 170px */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .booking-card {
   background: rgba(255, 255, 255, 0.732);
   backdrop-filter: blur(15px);
@@ -286,7 +290,12 @@ header.scrolled .navlist a:hover {
 
 .service-card:hover { 
     transform: translateY(-6px); 
+	
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.service-card.selected {
+  background-color: #FFD94C;
 }
 
 .service-card img {

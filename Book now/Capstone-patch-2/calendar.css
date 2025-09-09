@@ -433,7 +433,7 @@ label {
 .note.red { color: #F44336; font-size: 12px; }
 
 
-        .btn-row {
+.btn-row {
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
@@ -486,6 +486,12 @@ label {
   text-align: center;
   padding: 15px 10px;
   margin-top: auto;
+}
+
+.disabled-date {
+    color: #ccc;
+    pointer-events: none;
+    cursor: not-allowed;
 }
 
 .footer p {

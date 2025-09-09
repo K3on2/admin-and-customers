@@ -9,13 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
   <link rel="stylesheet" href="assistance1.css">
-
 </head>
 <body>
 
 <header>
   <div class="logo-container">
-    <img src="logo.png" alt="logo" class="logo-img">
+    <img src="logo.png" alt="Al Ayadi Al Sarea Logo" class="logo-img">
     <div class="logo-text-group">
       <span class="logo-text">Al Ayadi <span class="highlight">Al</span> <span class="high">Sarea</span></span>
       <span class="logo-subtext">Cleaning Services</span>
@@ -37,41 +36,41 @@
 
 <section class="booking-section">
   <div class="booking-card">
-        <ul class="booking-details">
-            <li><i class="bx bx-user"></i> Customer Details</li>
-            <li><i class="bx bx-calendar"></i> Date & Time</li>
-            <li><i class="bx bx-brush"></i> Type of Cleaning</li>
-            <li><i class="bx bx-group"></i> Preferred Cleaning Agents</li>
-            <li><i class="bx bx-edit-alt"></i> Special Requests</li>
-            <li><i class="bx bx-receipt"></i> Billing Summary</li>
-            <li><i class="bx bx-check-circle"></i> Booking Confirmation</li>
-        </ul>
+    <ul class="booking-details">
+      <li><i class="bx bx-user"></i> Customer Details</li>
+      <li><i class="bx bx-calendar"></i> Date & Time</li>
+      <li><i class="bx bx-brush"></i> Type of Cleaning</li>
+      <li><i class="bx bx-group"></i> Preferred Cleaning Agents</li>
+      <li><i class="bx bx-edit-alt"></i> Special Requests</li>
+      <li><i class="bx bx-receipt"></i> Billing Summary</li>
+      <li><i class="bx bx-check-circle"></i> Booking Confirmation</li>
+    </ul>
 
     <div class="booking-form">
-      <h2>Booking Information</h2>
+      <h2>Type of Cleaning</h2>
 
-      <!-- Other Services -->
-      <h3>Other Home Assistance Services:</h3>
+      <!-- Cleaning Services -->
+      <h3>Home Assistance Services:</h3>
       <div class="service-options">
         <div class="service-card">
-          <img src="sparkle.png" alt="Ironing">
+          <img src="sparkle.png" alt="Normal Cleaning Service">
           <h4>Normal Cleaning</h4>
           <p>Regular cleaning covering dusting, sweeping, mopping, wiping surfaces, and tidying up to maintain day-to-day cleanliness and hygiene.</p>
         </div>
         <div class="service-card">
-          <img src="cleaning.png" alt="Dusting">
+          <img src="cleaning.png" alt="Deep Cleaning Service">
           <h4>Deep Cleaning</h4>
-          <p>Intensive cleaning that includes scrubbbing tiles, sanatizing kitchens and bathrooms, cleaning behind furnitures, and removing deep seated dirt and stains. Perfect for move-ins, move-outs, or a complete home refresh.</p>
+          <p>Intensive cleaning that includes scrubbing tiles, sanitizing kitchens and bathrooms, cleaning behind furniture, and removing deep-seated dirt and stains. Perfect for move-ins, move-outs, or a complete home refresh.</p>
         </div>
-        <div class="service-card back-card"  onclick="assist()">
-          <img src="back.png" alt="back">
-          <p style="color:white;">OTHER HOME ASSISTANCE - SERVICES</p>
+        <div class="service-card back-card" onclick="assist()">
+          <i class="bx bx-dots-horizontal-rounded" style="font-size:2rem;color:white;"></i>
+          <p style="color:white;">Other Home Assistance Services</p>
         </div>
       </div>
 
       <div class="btn-row">
-        <button class="btn btn-back" href = "#" onclick = "cal()">Back</button>
-        <button class="btn btn-next" href = "#" onclick = "agent()">Next</button>
+        <button class="btn btn-back" onclick="cal()">Back</button>
+        <button id="nextBtn" class="btn btn-next" onclick="agent()" disabled>Next</button>
       </div>
     </div>
   </div>

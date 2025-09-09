@@ -9,8 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="calendar.css">
-
-        
 </head>
 <body>
 
@@ -84,11 +82,11 @@
                     </div>
 
                     <label>Hours:</label>
-                    <input type="number" id="hoursInput" min="2" value="2">
+                    <input type="number" id="hoursInput" min="2">
                     <small class="note green">Minimum of 2 hours</small>
 
                     <label>Number of Cleaners:</label>
-                    <input type="number" id="cleanersInput" min="1" value="1">
+                    <input type="number" id="cleanersInput" min="1">
                     <small class="note red">25 AED per cleaner</small>
 
                     <input type="hidden" id="selectedDate">
@@ -152,6 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         monthYear.textContent = `${monthNames[month]} ${year}`;
 
+        const today = new Date();
+
         let date = 1;
         for (let i = 0; i < 6; i++) {
             const row = document.createElement("tr");
@@ -161,35 +161,41 @@ document.addEventListener("DOMContentLoaded", function () {
                     cell.textContent = "";
                 } else {
                     const dateStr = `${year}-${String(month+1).padStart(2,"0")}-${String(date).padStart(2,"0")}`;
+                    const thisDate = new Date(year, month, date);
+
                     cell.innerHTML = `<div>${date}</div>`;
 
-                    // Restore saved date
-                    if (savedBooking.detailsDate === dateStr) {
-                        cell.classList.add("saved-date");
+                    if (thisDate < new Date(today.getFullYear(), today.getMonth(), today.getDate())) {
+                        // Past date: disable
+                        cell.classList.add("disabled-date");
                     } else {
-                        cell.classList.add("available");
-                    }
-
-                    // Restore currently selected date
-                    if (selectedDateInput.value === dateStr) {
-                        cell.classList.add("selected");
-                    }
-
-                    cell.dataset.date = dateStr;
-                    cell.addEventListener("click", () => {
-                        document.querySelectorAll("#bookingCalendar td").forEach(td => td.classList.remove("selected"));
-                        cell.classList.add("selected");
-
-                        if (selectedDateInput.value !== dateStr) {
-                            selectedDateInput.value = dateStr;
-                            selectedTimeInput.value = "";
-                            document.querySelectorAll(".time-btn").forEach(b => b.classList.remove("active"));
-                            hoursInput.value = 2;
-                            cleanersInput.value = 1;
+                        // Selectable date
+                        if (savedBooking.detailsDate === dateStr) {
+                            cell.classList.add("saved-date");
+                        } else {
+                            cell.classList.add("available");
                         }
 
-                        updateNextButtonState();
-                    });
+                        if (selectedDateInput.value === dateStr) {
+                            cell.classList.add("selected");
+                        }
+
+                        cell.dataset.date = dateStr;
+                        cell.addEventListener("click", () => {
+                            document.querySelectorAll("#bookingCalendar td").forEach(td => td.classList.remove("selected"));
+                            cell.classList.add("selected");
+
+                            if (selectedDateInput.value !== dateStr) {
+                                selectedDateInput.value = dateStr;
+                                selectedTimeInput.value = "";
+                                document.querySelectorAll(".time-btn").forEach(b => b.classList.remove("active"));
+                                hoursInput.value = "";     // reset
+                                cleanersInput.value = "";  // reset
+                            }
+
+                            updateNextButtonState();
+                        });
+                    }
                     date++;
                 }
                 row.appendChild(cell);
@@ -199,11 +205,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateNextButtonState() {
-        if (selectedDateInput.value && selectedTimeInput.value && hoursInput.value && cleanersInput.value) {
-            nextBtn.disabled = false;
-        } else {
-            nextBtn.disabled = true;
-        }
+        const hasDate = selectedDateInput.value !== "";
+        const hasTime = selectedTimeInput.value !== "";
+        const hasHours = hoursInput.value !== "" && parseInt(hoursInput.value) >= 2;
+        const hasCleaners = cleanersInput.value !== "" && parseInt(cleanersInput.value) >= 1;
+
+        nextBtn.disabled = !(hasDate && hasTime && hasHours && hasCleaners);
     }
 
     // Restore saved booking data
@@ -258,8 +265,8 @@ document.addEventListener("DOMContentLoaded", function () {
     updateNextButtonState();
 });
 </script>
-<script src = "back.js"></script>
-<script src = "assist1.js"></script>
+<script src="back.js"></script>
+<script src="assist1.js"></script>
 
 </body>
 </html>
