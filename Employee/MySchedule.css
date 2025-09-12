@@ -1,0 +1,111 @@
+/* -------------------------
+   🌟 Global Styles
+------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+/* -------------------------
+   🌟 Header
+------------------------- */
+header {
+  background: linear-gradient(135deg, #00122c, #0d40a0);
+  color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-box input {
+  padding: 8px 14px;
+  border-radius: 25px;
+  border: 1px solid transparent;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.search-box input:focus {
+  background: #fff;
+  color: #333;
+  border-color: #FFD94C;
+  box-shadow: 0 0 8px rgba(255, 217, 76, 0.3);
+}
+
+.header-right a i {
+  font-size: 22px;
+  color: #fff;
+  transition: 0.2s ease;
+}
+
+.header-right a i:hover {
+  color: #FFD94C;
+  transform: scale(1.1);
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+}
+
+.dropdown-menu {
+  border-radius: 12px;
+  padding: 12px;
+  border: none;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+/* -------------------------
+   🌟 Logo
+------------------------- */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+}
+
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-text {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.logo-subtext {
+  font-size: 15px;
+  font-weight: 500;
+  color: #FFD94C;
+}
+
+.highlight { color: #FFD94C; }
+.high { color: #E74C3C; }

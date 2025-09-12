@@ -1,0 +1,712 @@
+/* -------------------------
+   🌟 Global Styles
+------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+/* -------------------------
+   🌟 Header
+------------------------- */
+header {
+  background: linear-gradient(135deg, #00122c, #0d40a0);
+  color: #fff;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-box input {
+  padding: 8px 14px;
+  border-radius: 25px;
+  border: 1px solid transparent;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  color: #fff;
+  transition: 0.3s ease;
+}
+
+.search-box input:focus {
+  background: #fff;
+  color: #333;
+  border-color: #FFD94C;
+  box-shadow: 0 0 8px rgba(255, 217, 76, 0.3);
+}
+
+.header-right a i {
+  font-size: 22px;
+  color: #fff;
+  transition: 0.2s ease;
+}
+
+.header-right a i:hover {
+  color: #FFD94C;
+  transform: scale(1.1);
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+}
+
+.dropdown-menu {
+  border-radius: 12px;
+  padding: 12px;
+  border: none;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+/* -------------------------
+   🌟 Logo
+------------------------- */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+}
+
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-text {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.logo-subtext {
+  font-size: 15px;
+  font-weight: 500;
+  color: #FFD94C;
+}
+
+.highlight { color: #FFD94C; }
+.high { color: #E74C3C; }
+
+/* -------------------------
+   🌟 Layout
+------------------------- */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 🌟 Sidebar Navigation */
+.sidebar-nav {
+  width: 240px;
+  height: 100vh;
+  background: linear-gradient(180deg, #00122c, #0d40a0);
+  color: #fff;
+  position: fixed;      /* make it overlay */
+  top: 0;
+  left: -240px;         /* hidden by default */
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;        /* stay on top */
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.2);
+}
+
+.sidebar-nav.active {
+  left: 0;
+}
+
+/* Add overlay background when sidebar open */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  z-index: 999;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+.sidebar-collapsed .sidebar-nav {
+  display: none !important;   /* hide left sidebar */
+}
+
+.sidebar-collapsed .container {
+  grid-template-columns: 4fr 1fr; /* still main + right sidebar */
+}
+
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar-logo {
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+.sidebar-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFD94C;
+}
+
+.logos-text {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.logos-subtext {
+  
+  font-size: 17px;
+  font-weight: 100;
+  color: #FFD94C;
+}
+
+
+/* 🌟 Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 14px 25px;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar-menu li i {
+  font-size: 18px;
+}
+
+.sidebar-menu li:hover,
+.sidebar-menu li.active {
+  background: #0d40a0;
+  border-left: 4px solid #FFD94C;
+  color: #FFD94C;
+}
+
+/* 🌟 Menu Button */
+.menu-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  margin-right: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.menu-btn:hover {
+  color: #FFD94C;
+}
+
+/* 🌟 Collapsed Sidebar */
+.sidebar-collapsed .sidebar-nav {
+  width: 70px;
+}
+
+.sidebar-collapsed .sidebar-nav h3,
+.sidebar-collapsed .sidebar-menu li span {
+  display: none;
+}
+
+.sidebar-collapsed .sidebar-menu li {
+  justify-content: center;
+  padding: 14px 0;
+}
+
+.sidebar-collapsed .container {
+  grid-template-columns: 1fr; /* expand content */
+}
+
+.container {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* -------------------------
+   🌟 Cards (Top Stats)
+------------------------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 18px;   /* reduced padding */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 50px;    /* shorter cards */
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: #171717;
+  font-weight: 500;
+}
+
+.card span {
+  font-size: 24px;
+  font-weight: 700;
+  color: #002366;
+}
+
+.card p {
+  font-size: 15px;
+  color: #282727;
+  margin-top: 2px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  border-color: #002366;
+  background: linear-gradient(145deg, #ffffff, #f9fbff);
+}
+
+.cards-small {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* for responsiveness */
+  margin-top: 20px;
+}
+
+.small-panel {
+  flex: 1;               /* grow equally */
+  min-width: 250px;      /* prevent too small on narrow screens */
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.small-panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.s-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;              /* smaller gap */
+  padding: 14px;          /* reduced padding */
+  border-radius: 14px;    /* slightly smaller corners */
+  color: #fff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 90px;       /* shrink height */
+}
+
+.s-card h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.s-card span {
+  font-size: 26px;
+  font-weight: 700;
+  display: block;
+}
+
+.s-card p {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.s-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+}
+
+/* 🌟 Card Icons */
+.card-icon {
+  font-size: 38px;
+  opacity: 0.9;
+}
+
+/* Different Gradient Colors */
+.s-card.jobs {
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+}
+.s-card.hours {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+.s-card.location {
+  background: linear-gradient(135deg, #396afc, #2948ff);
+}
+
+
+/* -------------------------
+   🌟 Panels
+------------------------- */
+.panel {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.panel h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #002366;
+  font-weight: 600;
+}
+
+.panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+  border: 1px solid #002366;
+}
+
+/* -------------------------
+   🌟 Schedule Panels
+------------------------- */
+.panel.schedule-panel {
+  background: linear-gradient(135deg, #ffffff, #f9fbff);
+  border-left: 6px solid #002366;
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8faff;
+  padding: 14px 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+.schedule-item:hover {
+  transform: translateX(6px);
+  background: #eef4ff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.schedule-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-info span:first-child {
+  font-weight: 600;
+  color: #002366;
+  font-size: 15px;
+}
+
+.schedule-info span:last-child {
+  font-size: 13px;
+  color: #888;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  background: #ffe3e3;
+  color: #d9534f;
+}
+
+.status-complete {
+  background: #d4f5dc;
+  color: #28a745;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+/* Responsive stacking */
+@media (max-width: 992px) {
+  .schedule-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------------
+   🌟 Tasks
+------------------------- */
+.task {
+  background: #f4f6fc;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.task:hover {
+  background: #e9eefc;
+  transform: scale(1.02);
+}
+
+/* -------------------------
+   🌟 Sidebar Panels
+------------------------- */
+.sidebar {
+  display: grid;
+  gap: 25px;
+}
+
+.announce,
+.summary {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  transition: 0.3s ease;
+}
+
+.announce h3,
+.summary h3 {
+  margin-bottom: 12px;
+  color: #002366;
+  font-weight: 600;
+}
+
+.announce:hover,
+.summary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* Main + Right Sidebar */
+.main-layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr; /* main + right sidebar */
+  flex: 1;
+  gap: 25px;
+  padding: 25px;
+}
+
+.sidebar-collapsed .main-layout {
+  grid-template-columns: 4fr 1fr; /* expand main when sidebar hidden */
+}
+
+/* Right Sidebar */
+.right-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+/* -------------------------
+   🌟 Calendar (Modern)
+------------------------- */
+.calendar-widget {
+  background: #fff;
+  color: #333;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+.calendar.panel {
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.calendar-header button {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #f1f3f9;
+  color: #333;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.calendar-header button:hover {
+  background: #002366;
+  color: #fff;
+}
+
+#monthYear {
+  font-size: 16px;
+  font-weight: 600;
+  color: #002366;
+}
+
+#bookingCalendar {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 14px;
+}
+
+#bookingCalendar th {
+  padding: 6px;
+  color: #555;
+  font-weight: 600;
+}
+
+#bookingCalendar td {
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+#bookingCalendar td:hover {
+  background: #eef4ff;
+  cursor: pointer;
+}
+
+#bookingCalendar td.selected {
+  background: #002366;
+  color: #fff;
+  font-weight: bold;
+}
+
+#bookingCalendar td.today {
+  background: #FFD94C;
+  color: #002366;
+  font-weight: bold;
+}
+
+#bookingCalendar td.disabled-date {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.n-summary {
+  background: linear-gradient(135deg, #ffffff, #f9fbff);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  border-left: 6px solid #002366;
+}
+
+.n-summary h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #002366;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.summary-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 12px;
+  background: #e0e0e0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 12px;
+  background: #667eea;
+  transition: width 0.5s ease;
+}
+
+/* Different colors for priorities */
+.high-priority { background: #ff6a00; }
+.medium-priority { background: #ffd700; }
+.low-priority { background: #38ef7d; }
+
+/* Hover effect */
+.n-summary:hover .progress-fill {
+  opacity: 0.9;
+  transform: scaleY(1.1);
+  transition: 0.3s;
+}
